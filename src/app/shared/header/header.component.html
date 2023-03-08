@@ -1,0 +1,70 @@
+<nav class="px-2 sm:px-4 py-1.5 rounded-lg bg-blue-900 m-3">
+  <div class="container flex flex-wrap justify-between items-center mx-auto">
+    <a class="flex items-center">
+      <app-choose-country></app-choose-country>
+      <a href="tabs/shop" class="self-center text-base font-semibold whitespace-nowrap text-white pl-2 font-bold">Pharmacy Africa </a>
+    </a>
+    <div class="flex md:order-2">
+      <a *ngIf="isConnected" href="/notifications" data-collapse-toggle="navbar-search" type="button" class="{{ myNotif.length === 0 ? 'text-white' : 'text-yellow-400 animate-pulse'}} p-1 inline-flex items-center text-sm rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+        </svg>
+      </a>
+      <a href="/profil" data-collapse-toggle="navbar-search" type="button" class="p-1 inline-flex items-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-5 h-5 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+        </svg>
+      </a>
+      <!--button (click)="menu = !menu" data-collapse-toggle="navbar-search" type="button" class="p-1 inline-flex items-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
+        <svg *ngIf="menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-5 h-5 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+        <svg *ngIf="!menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-5 h-5 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button-->
+    </div>
+  </div>
+</nav>
+
+<aside class="w-64 fixed z-50 h-full transition duration-150 ease-in" aria-label="Sidebar" *ngIf="menu">
+  <div class="overflow-y-auto py-4 px-3 rounded-r" style="background-color: #202020">
+    <ul class="space-y-2">
+      <li>
+        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-300 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+          <span class="ml-3">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-300 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+         <span class="flex-1 ml-3 whitespace-nowrap">Kanban</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-300 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+          <span class="flex-1 ml-3 whitespace-nowrap">Inbox</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-300 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+          <span class="flex-1 ml-3 whitespace-nowrap">Users</span>
+        </a>
+      </li>
+      <li>
+        <a href="admin" class="flex items-center p-2 text-base font-normal text-gray-300 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+          <span class="flex-1 ml-3 whitespace-nowrap">Products</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-300 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+          <span class="flex-1 ml-3 whitespace-nowrap">Sign In</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-300 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+          <span class="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>

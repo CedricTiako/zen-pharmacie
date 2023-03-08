@@ -1,0 +1,62 @@
+<section>
+  <div class="overflow-x-auto Center">
+    
+  
+    <div class="justify-self-auto">
+
+        <h1 class=" place-self-center text-sm font-bold  text-blue-900 uppercase justify-self-auto text-center">
+            Your itinerary
+        </h1>
+    </div>
+   
+    
+      <!-- <h1 class="text-sm font-bold tracking-tight text-blue-900 uppercase content-center w-full">
+        Your itinerary
+      </h1> -->
+      <div>
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" *ngIf="distance!==null">
+     
+            <thead  class="text-xs text-gray-900 uppercase dark:text-gray-400">
+              <tr >
+                <th scope="col" class="px-6 py-3">Mode de Deplacement</th>
+                <th scope="col" class="px-6 py-3">Distance</th>
+                <th scope="col" class="px-6 py-3">Duré</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr>
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">DRIVING</td>
+                <td class="px-6 py-4">{{distance['DRIVING'].distance['text']}}</td>
+                <td class="px-6 py-4">{{distance['DRIVING'].duration['text']}}</td>
+              </tr>
+              <tr>
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">WALKING</td>
+                <td class="px-6 py-4">{{distance['WALKING'].distance['text']}}</td>
+                <td class="px-6 py-4">{{distance['WALKING'].duration['text']}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+      </div>
+    
+  </div>
+  
+
+  <google-map #myGoogleMap height="430px" width="100%" [zoom]="zoom" [center]="center" [options]="options"
+              (mapClick)="eventHandler($event,'mapClick')" (mapDblclick)="eventHandler($event,'mapDblclick')"
+              (mapDrag)="eventHandler($event,'mapDrag')" (mapDragend)="eventHandler($event,'mapDragend')"
+              (mapRightclick)="eventHandler($event,'mapRightclick')"
+              (zoomChanged)="eventHandler($event,'zoomChanged')">
+
+    <map-marker #markerElem="mapMarker" *ngFor="let marker of markers" [position]="marker.position"
+                [label]="marker.label" [title]="marker.title" [options]="marker.options"
+                (mapDrag)="eventHandler($event,'mapDragMarker')" (mapDragend)="eventHandler($event,'mapDragend')"
+                (mapClick)="openInfo(markerElem, marker.dataElement)">
+    </map-marker>
+    <map-traffic-layer [autoRefresh]="false"></map-traffic-layer>
+    <map-info-window [innerHTML]="infoContent"></map-info-window>
+    <map-directions-renderer *ngIf="(directionsResults$ | async) as directionsResults"
+                             [directions]="directionsResults"></map-directions-renderer>
+    <map-polygon [paths]="polygon" > </map-polygon>
+  </google-map>
+</section>

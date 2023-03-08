@@ -1,0 +1,21 @@
+<section>
+  <google-map #myGoogleMap height="430px" width="100%" [zoom]="zoom" [center]="center" [options]="options"
+              (mapClick)="eventHandler($event,'mapClick')" (mapDblclick)="eventHandler($event,'mapDblclick')"
+              (mapDrag)="eventHandler($event,'mapDrag')" (mapDragend)="eventHandler($event,'mapDragend')"
+              (mapRightclick)="eventHandler($event,'mapRightclick')"
+              (zoomChanged)="eventHandler($event,'zoomChanged')">
+
+    <map-marker-clusterer [imagePath]="'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'" [averageCenter]="true">
+      <map-marker #markerElem="mapMarker" *ngFor="let marker of markers" [position]="marker.position"
+                  [label]="marker.label" [title]="marker.title" [options]="marker.options"
+                  (mapDrag)="eventHandler($event,'mapDragMarker')" (mapDragend)="eventHandler($event,'mapDragend')"
+                  (mapClick)="openInfo(markerElem, marker.dataElement)">
+      </map-marker>
+    </map-marker-clusterer>
+
+    <map-traffic-layer [autoRefresh]="false"></map-traffic-layer>
+    <map-info-window [innerHTML]="infoContent"></map-info-window>
+    <map-polygon [paths]="polygon" [options]="optionPoly"> </map-polygon>
+  </google-map>
+
+</section>

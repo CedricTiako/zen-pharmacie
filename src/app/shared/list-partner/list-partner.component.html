@@ -1,0 +1,157 @@
+
+<div>
+  <div *ngFor="let contenu of listePartnerWitchDiastance; let i = index" class="group bg-gray-900 p-4 transition-all duration-300 hover:rotate-1 lg:p-8">
+    <div class="mb-3 text-right">
+      <button class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+        </svg>
+      </button>
+    </div>
+    <div class="flex items-center gap-x-2">
+      <img class="aspect-[2/2] w-16" src="{{contenu.partner.logo ? contenu.partner.logo : ''}}" />
+      <div>
+        <h3 class="text-xl font-bold text-gray-50">{{contenu.partner.name}}</h3>
+        <span class="text-xs text-gray-300">{{contenu.partner.subtitle}}</span>
+      </div>
+    </div>
+    <div class="my-4">
+      <h3 class="text-2xl font-medium text-gray-200">Descrition</h3>
+      <div class="text-sm font-medium">
+        <span  *ngFor="let contact of contenu.partner.content.contacts" class="m-1 ml-0 inline-block text-blue-500">  <a href="tel:{{contact}}" class="bg-blue-900 rounded-full p-1 inline-flex items-center text-base font-semibold text-white dark:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-2 h-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0l-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />
+          </svg>
+        </a>
+        <a href="tel:{{contact}}" class="inline-flex ml-1 text-sm text-black truncate dark:text-white">
+          {{contact}}
+        </a></span>
+
+      </div>
+      <div  *ngIf="contenu.distance !==null" class="mt-2 text-sm text-gray-400">DRIVING: {{contenu.distance.DRIVING['distance']['text']}} / {{contenu.distance.DRIVING.duration['text']}}</div>
+      <div  *ngIf="contenu.distance !==null" class="mt-2 text-sm text-gray-400">WALKING: {{contenu.distance.WALKING['distance']['text']}} / {{contenu.distance.WALKING.duration['text']}}</div>
+    </div>
+    <div class="flex items-center justify-between">
+      <div *ngIf="contenu.partner.time._openAllTime;then contenu_bon else contenu_pas_bon"></div>  
+      
+      <ng-template #contenu_bon> 
+         <span class="text-sm font-medium text-gray-50"  >Open 24h/24</span>
+        </ng-template>
+<ng-template #contenu_pas_bon>
+  <div class="text-gray-200" [innerHTML]="contenu.status">
+
+  </div>
+</ng-template>
+<a class="font-medium text-blue-500 transition-all duration-300 group-hover:text-blue-500/80"> <a href="tel:{{contenu.partner.content.contacts[0]}}" class="inline-flex ml-1 text-sm truncate dark:text-white">
+  Call Nowj
+</a></a>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+<!-- 
+<div>
+  <div *ngFor="let contenu of listePartnerWitchDiastance; let i = index" class="group p-4 transition-all duration-300 hover:rotate-1 lg:p-8 dark:bg-gray-900">
+    <div class="mb-3 text-right">
+      <button class="dark:text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+        </svg>
+      </button>
+    </div>
+    <div class="flex items-center gap-x-2">
+      <img class="aspect-[2/2] w-16" src="{{contenu.partner.logo ? contenu.partner.logo : ''}}" />
+      <div>
+        <h3 class="text-xl font-bold dark:text-gray-50">{{contenu.partner.name}}</h3>
+        <span class="text-xs dark:text-gray-300">{{contenu.partner.subtitle}}</span>
+      </div>
+    </div>
+    <div class="my-4">
+      <h3 class="text-2xl font-medium text-gray-200">Description</h3>
+      <div class="text-sm font-medium">
+        <span  *ngFor="let contact of contenu.partner.content.contacts" class="m-1 ml-0 inline-block text-blue-500">  <a href="tel:{{contact}}" class="bg-blue-900 rounded-full p-1 inline-flex items-center text-base font-semibold text-white dark:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-2 h-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0l-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />
+          </svg>
+        </a>
+        <a href="tel:{{contact}}" class="inline-flex ml-1 text-sm text-black truncate dark:text-white">
+          {{contact}}
+        </a></span>
+
+      </div>
+      <div  *ngIf="contenu.distance !==null" class="mt-2 text-sm text-gray-500">DRIVING: {{contenu.distance.DRIVING['distance']['text']}} / {{contenu.distance.DRIVING.duration['text']}}</div>
+      <div  *ngIf="contenu.distance !==null" class="mt-2 text-sm text-gray-500">WALKING: {{contenu.distance.WALKING['distance']['text']}} / {{contenu.distance.WALKING.duration['text']}}</div>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-medium text-gray-50">Full Time</span>
+      <a class="font-medium text-blue-500 transition-all duration-300 group-hover:text-blue-500/80"> <a href="tel:{{contenu.partner.content.contacts[0]}}" class="inline-flex ml-1 text-sm truncate dark:text-white">
+        Call Nowj
+      </a></a>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<div *ngFor="let contenu of listePartnerWitchDiastance; let i = index" class="mx-auto mt-11 w-80 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+  <img class="h-32 w-full object-cover object-center" src="{{contenu.partner.logo ? contenu.partner.logo : ''}}" alt="{{contenu.partner.name}}" />
+  <div class="p-4">
+    <h2 class="mb-2 text-lg font-medium dark:text-white text-gray-900 uppercase"><a href="preview-partner/{{contenu.partner.id}}" class="cursor-pointer text-xs font-medium text-gray-900 truncate dark:text-white">
+      {{contenu.partner.name}}
+    </a></h2>
+    <p class="mb-2 text-base dark:text-gray-300 text-gray-700">{{contenu.partner.subtitle}}</p>
+    <div class="flex items-center">
+      <p class="ml-auto text-base font-medium text-green-500">20% off</p>
+      <div *ngIf="latitude + longitude > 0" class="inline-flex items-center ml-auto text-base font-medium text-green-500 dark:text-white">
+        {{contenu.position}}
+      </div>
+    </div>
+    <ul role="list">
+      <li class="py-1 sm:px-2" *ngFor="let contact of contenu.partner.content.contacts">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <a href="tel:{{contact}}" class="bg-blue-900 rounded-full p-1 inline-flex items-center text-base font-semibold text-white dark:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-2 h-2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0l-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />
+              </svg>
+            </a>
+            <a href="tel:{{contact}}" class="inline-flex ml-1 text-sm text-black truncate dark:text-white">
+              {{contact}}
+            </a>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <table  *ngIf="contenu.distance !==null" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+     
+      <thead  class="text-xs text-gray-900 uppercase dark:text-gray-400">
+        <tr >
+          <th scope="col" class="px-3 py-3">Mode de Deplacement</th>
+          <th scope="col" class="px-3 py-3">Distance</th>
+          <th scope="col" class="px-3 py-3">Duré</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr>
+          <td scope="row" class="px-3 px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">DRIVING</td>
+          <td class="px-3 py-2">{{contenu.distance.DRIVING['distance']['text']}}</td>
+          <td class="px-3 px-2">{{contenu.distance.DRIVING.duration['text']}}</td>
+        </tr>
+        <tr>
+          <td scope="row" class="px-3 px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">WALKING</td>
+          <td class="px-3 px-2">{{contenu.distance.WALKING['distance']['text']}}</td>
+          <td class="px-3 px-2">{{contenu.distance.WALKING.duration['text']}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->

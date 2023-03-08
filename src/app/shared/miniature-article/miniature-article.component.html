@@ -1,0 +1,19 @@
+<a class="block bg-white border rounded-lg overflow-hidden w-72" *ngIf="data" href="article/{{data.id}}">
+  <div *ngIf="skin === 'card-b'" class="h-32 w-full bg-cover bg-center" style="background-image: url({{data.miniature}})"></div>
+  <div class="p-2 max-w-sm">
+    <div class="flex items-center space-x-2">
+      <div class="flex-shrink-0">
+        <img class="w-8 h-8 rounded-lg logo" src="{{data.logo ? data.logo : ''}}" alt="logo">
+      </div>
+      <div class="flex-1 min-w-0 text-left">
+          <p class="font-medium text-gray-900 truncate text-sm uppercase">
+            {{data.title}}
+          </p>
+        <div class="text-gray-500 truncate font-light" style="font-size: 12px">
+          {{data.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="skin === 'card-t'" class="h-32 max-w-lg bg-cover bg-center" style="background-image: url({{data.miniature}})"></div>
+</a>

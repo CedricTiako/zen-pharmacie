@@ -1,0 +1,11 @@
+<div class="pt-3">
+  <p class="px-5 text-sm font-bold tracking-tight text-blue-900 uppercase">
+    SUGGESTED SERVICES FOR YOU
+  </p>
+</div>
+
+<ion-slides  class="my-2" pager="false" [options]="slideOpts">
+  <ion-slide *ngFor="let ss of allSS; let i = index">
+    <app-miniature-partner [data]="ss" [skin]="'card'"></app-miniature-partner>
+  </ion-slide>
+</ion-slides>

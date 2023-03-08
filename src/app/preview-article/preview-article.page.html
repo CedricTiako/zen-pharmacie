@@ -1,0 +1,23 @@
+<app-header></app-header>
+
+<ion-content *ngIf="currentArticle">
+  <ion-item lines="none">
+    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </div>
+    <ion-label color="primary">
+      <span class="text-xl font-bold">
+      {{currentArticle.title}}
+    </span>
+    </ion-label>
+  </ion-item>
+
+  <div *ngIf="currentArticle.tags.length > 0" class="px-4 pb-3">
+    <a href="search?txt={{t}}" *ngFor="let t of currentArticle.tags" id="badge-dismiss-dark" class="inline-flex items-center py-1 px-2 mr-2 text-sm font-medium text-gray-800 bg-gray-100 rounded dark:bg-gray-200 dark:text-gray-800">
+      {{t}}
+    </a>
+  </div>
+
+  <div *ngIf="!currentArticle.content.includes('http://') && !currentArticle.content.includes('https://')" [innerHTML]="currentArticle.content"></div>
+  <iframe class="px-4 w-full h-full" *ngIf="currentArticle.content.includes('http://') || currentArticle.content.includes('https://')" [src]="linkj"></iframe>
+</ion-content>

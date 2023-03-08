@@ -1,0 +1,185 @@
+<app-header></app-header>
+
+<ion-content>
+
+  <div class="flex items-center">
+    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </div>
+    <div class="flex-shrink-0">
+      <img src="assets/img/icone-1.png" class="rounded-none w-12"/>
+    </div>
+    <div class="flex-1 min-w-0">
+      <h3 class="text-xl px-1 font-bold text-blue-900">
+        Pharmacy Africa
+      </h3>
+    </div>
+  </div>
+
+  <ion-card *ngIf="currentPartner">
+    <ion-card-header class="ion-no-padding">
+      <div class="p-2">
+        <div class="flex items-center space-x-4">
+          <div class="flex-shrink-0">
+            <img class="w-8 h-8 logo" src="{{currentPartner.logo ? currentPartner.logo : ''}}" alt="logo">
+          </div>
+          <div class="flex-1 min-w-0 text-left">
+            <p class="font-medium text-gray-900 truncate text-sm uppercase">
+              {{currentPartner.name}}
+            </p>
+            <div class="text-gray-500 truncate font-light" style="font-size: 12px">
+              {{currentPartner.subtitle}}
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <ng-container>
+              <svg (click)="likeCurrentPartner()" *ngIf="currentUser && !currentUser.favoritePartner.includes(currentPartner.id)" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              <svg (click)="likeCurrentPartner()" *ngIf="currentUser && currentUser.favoritePartner.includes(currentPartner.id)" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-500 inline-flex" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+              </svg>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ion-card-header>
+
+    <div class="h-32 w-full bg-cover bg-top" style="background-image: url('{{currentPartner.cover ?? null}}')"></div>
+    <ion-card-content class="ion-no-padding">
+      <div class="text-center bg-blue-900">
+        <a>
+          <ul style="font-size: 8px" class="px-3 space-x-1 grid grid-cols-2 gap-1 text-xs font-light uppercase text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+
+            <li *ngIf="currentPartner.content">
+              <a (click)="menuSelect = 2" class="inline-block py-2 cursor-pointer {{menuSelect === 2 ? 'text-yellow-400 border-b-4 border-white' : 'text-white'}} uppercase dark:bg-gray-800 dark:text-blue-500">Pharmacy Point</a>
+            </li>
+            <li *ngIf="currentPartner.lat > 0 && currentPartner.long > 0">
+              <a (click)="menuSelect = 7" class="inline-block py-2 cursor-pointer {{menuSelect === 7 ? 'text-yellow-400 border-b-4 border-white' : 'text-white'}} uppercase dark:bg-gray-800 dark:text-blue-500">Itinerary</a>
+            </li>
+            <li *ngIf="currentPartner.idFaq.length > 0">
+              <a (click)="menuSelect = 6" class="inline-block py-2 cursor-pointer {{menuSelect === 6 ? 'text-yellow-400 border-b-4 border-white' : 'text-white'}} uppercase dark:bg-gray-800 dark:text-blue-500">Answers questions</a>
+            </li>
+          </ul>
+        </a>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+  <section *ngIf="menuSelect === 7 && currentPartner && currentPartner.lat > 0 && currentPartner.long > 0" class="space-y-2">
+    <app-map-partner-itinerary [data]="currentPartner"></app-map-partner-itinerary>
+  </section>
+
+
+
+  <section *ngIf="menuSelect === 6 && currentPartner && currentPartner.idFaq.length > 0" class="space-y-2 mx-3 my-6">
+    <app-miniature-faq [idFaq]="id" *ngFor="let id of currentPartner.idFaq"></app-miniature-faq>
+  </section>
+
+
+
+  <section *ngIf="currentPartner && currentPartner.content && menuSelect === 2" class="px-3 pb-1 pt-2">
+    <ul role="list" *ngIf="currentPartner.content.contacts.length > 0">
+      <li class="py-3 sm:py-4">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-bold tracking-tight text-blue-900 uppercase">
+              Contacts and location
+            </p>
+            <div class="text-sm text-gray-500 truncate dark:text-gray-400">
+              <p class="text-sm font-semibold mt-2 tracking-tight text-gray-900 capitalize">
+                Phone
+              </p>
+              <ul role="list">
+                <li class="py-1 sm:py-4" *ngFor="let contact of currentPartner.content.contacts">
+                  <div class="flex items-center space-x-4">
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm text-gray-500 truncate dark:text-white">
+                        {{contact}}
+                      </p>
+                    </div>
+                    <a href="tel:{{contact}}" class="bg-blue-900 rounded-full p-1 inline-flex items-center text-base font-semibold text-white dark:text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0l-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />
+                      </svg>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li *ngIf="currentPartner.content.address">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-semibold mt-2 tracking-tight text-gray-900 capitalize">
+              Address & location
+            </p>
+            <p class="text-sm text-gray-500 truncate dark:text-white" [innerHTML]="currentPartner.content.address"></p>
+          </div>
+          <div class="inline-flex items-center text-base font-semibold text-blue-900">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            </svg>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <ul role="list" *ngIf="currentPartner.content.openingDaysAndHours">
+      <li class="py-3 sm:py-4">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-bold tracking-tight text-blue-900 uppercase">
+              Opening hours
+            </p>
+            <div class="text-sm text-gray-500 truncate dark:text-gray-400">
+              <p class="text-sm text-gray-500 truncate dark:text-white">
+                {{currentPartner.content.openingDaysAndHours}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <ul role="list" *ngIf="currentPartner.content.serviceAvailable">
+      <li class="py-3 sm:py-4">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-bold tracking-tight text-blue-900 uppercase">
+              MoMo services available
+            </p>
+            <div class="text-sm text-gray-500 truncate dark:text-gray-400">
+              <p class="text-sm text-gray-500 truncate dark:text-white">
+                {{currentPartner.content.serviceAvailable}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <ul role="list" *ngIf="currentPartner.content.serviceAvailable">
+      <li class="py-3 sm:py-4">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-bold tracking-tight text-blue-900 uppercase">
+              More info
+            </p>
+            <div class="text-sm text-gray-500 truncate dark:text-gray-400">
+              <p class="text-sm text-gray-500 truncate dark:text-white">
+                {{currentPartner.content.otherInformation}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+</ion-content>

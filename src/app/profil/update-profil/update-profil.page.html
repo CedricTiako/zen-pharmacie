@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<ion-content class="ion-padding">
+  <div class="flex items-center">
+    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </div>
+    <div class="flex-shrink-0">
+      <img src="assets/img/icone-1.png" class="rounded-none w-12"/>
+    </div>
+    <div class="flex-1 min-w-0">
+      <h3 class="text-xl px-1 font-bold text-blue-900">
+        Update profil
+      </h3>
+    </div>
+  </div>
+
+  <form #form="ngForm" (ngSubmit)="save()" *ngIf="currentUser">
+    <ion-list class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating"><ion-text color="primary">Name </ion-text> <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input name="userName" [disabled]="isLoading" [(ngModel)]="currentUser.userName" required inputmode="text" type="text"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

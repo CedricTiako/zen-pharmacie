@@ -1,0 +1,63 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="flex items-center px-3">
+    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+      <ion-back-button defaultHref="profil"></ion-back-button>
+    </div>
+    <div class="flex-shrink-0">
+      <img src="assets/img/icone-1.png" class="rounded-none w-12"/>
+    </div>
+    <div class="flex-1 min-w-0">
+      <h3 class="text-xl px-1 font-bold text-blue-900">
+        MoMo for business
+      </h3>
+    </div>
+  </div>
+    <div class="p-5">
+      <div class="py-3">
+        <p class="text-sm font-bold tracking-tight text-blue-900 uppercase">
+          PRINT YOUR OWN POSTER
+        </p>
+      </div>
+      <div class="mb-3 font-normal text-sm text-gray-200">
+        <form #form="ngForm">
+          <div>
+            <label for="store" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select your store</label>
+            <select required ngModel name="store" id="store" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5">
+              <option value="">Make a choice</option>
+              <option value="{{part.id}}" *ngFor="let part of partner; let i = index">{{part.name}}</option>
+            </select>
+          </div>
+          <div class="mt-3">
+            <label for="campagne" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select campaign</label>
+            <select required ngModel name="campagne" id="campagne" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5">
+              <option value="">Make a choice</option>
+              <option value="{{camp.id}}" *ngFor="let camp of campagnes; let i = index">{{camp.name}}</option>
+            </select>
+          </div>
+          <div class="mt-3">
+            <label for="language" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select language</label>
+            <select required ngModel name="language" id="language" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5">
+              <option value="">Make a choice</option>
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+            </select>
+          </div>
+          <div class="text-center mt-3">
+            <a [href]="form.invalid ? null : 'print-custom-campaign?idStore=' + form.value.store + '&idCampagne=' + form.value.campagne + '&language=' + form.value.language" class="{{form.invalid ? 'opacity-75' : ''}} inline-flex items-center bg-blue-900 text-yellow-400 py-2 px-3 text-sm font-medium text-center rounded-lg hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 -mr-1 w-4 h-4" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 9.325v5.35q0 .6.525.875t1.025-.05l4.15-2.65q.475-.275.475-.85t-.475-.85L11.05 8.5q-.5-.325-1.025-.05q-.525.275-.525.875ZM12 22q-2.075 0-3.9-.788q-1.825-.787-3.175-2.137q-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175q1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138q1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175q-1.35 1.35-3.175 2.137Q14.075 22 12 22Zm0-10Zm0 8q3.325 0 5.663-2.337Q20 15.325 20 12t-2.337-5.663Q15.325 4 12 4T6.338 6.337Q4 8.675 4 12t2.338 5.663Q8.675 20 12 20Z"/></svg>
+               &nbsp; &nbsp;
+              <span class="font-bold">Generate</span>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  <div class="p-5">
+    <div id="pdfTable" #pdfTable>
+
+    </div>
+  </div>
+</ion-content>

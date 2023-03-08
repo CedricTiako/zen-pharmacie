@@ -1,0 +1,11 @@
+<div class="pt-3">
+  <p class="px-5 text-sm font-bold tracking-tight text-blue-900 uppercase">
+    HOW DOES IT WORK?
+  </p>
+</div>
+
+<ion-slides class="my-2" pager="false" [options]="slideOpts">
+  <ion-slide *ngFor="let howTo of allHowTo">
+    <app-miniature-article skin="card-t" [data]="howTo"></app-miniature-article>
+  </ion-slide>
+</ion-slides>

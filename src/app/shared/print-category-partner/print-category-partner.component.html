@@ -1,0 +1,14 @@
+<div class="py-3">
+  <p class="text-sm font-bold tracking-tight text-blue-900 uppercase">
+    Categories {{typeCategorie ? typeCategorie : ''}}
+  </p>
+</div>
+
+<ion-slides pager="false" [options]="slideOpts">
+  <ion-slide *ngFor="let cat of categoryPartner; let i = index">
+    <a [href]="cat.id === categorieSelect ? 'tabs/shop' : 'tabs/shop?category=' + cat.id" class=" flex {{ cat.id === categorieSelect ? 'bg-yellow-400 text-gray-800' : 'bg-transparent text-gray-800 border border-gray-800'}} px-2 ion-text-capitalize text-sm py-2 rounded">
+      <img *ngIf="cat.illustration" class="w-5 h-5 rounded-full avatar-img" [src]="cat.illustration" alt="Avatar"> &nbsp;
+      <span>{{cat.name}}</span>
+    </a>
+  </ion-slide>
+</ion-slides>

@@ -1,0 +1,9 @@
+<div *ngIf="data">
+  <div>
+    <a>
+      <h5 class="tracking-tight font-semibold text-blue-900">{{getValueTraduct(data.title)}}</h5>
+    </a>
+    <div class="py-3 text-sm font-light text-gray-400" [innerHTML]="data.content">
+    </div>
+  </div>
+</div>

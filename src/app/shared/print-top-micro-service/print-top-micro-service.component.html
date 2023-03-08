@@ -1,0 +1,11 @@
+<div class="pt-3 mb-2">
+  <p class="text-sm font-bold tracking-tight text-blue-900 uppercase">
+    Some micro services
+  </p>
+</div>
+
+<ion-slides class="px-3" pager="false" [options]="slideOpts">
+  <ion-slide *ngFor="let partner of partners">
+    <app-miniature-partner [data]="partner" [skin]="'circle'"></app-miniature-partner>
+  </ion-slide>
+</ion-slides>

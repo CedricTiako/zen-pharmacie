@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="flex items-center px-3">
+    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </div>
+    <div class="flex-shrink-0">
+      <img src="assets/img/icone-1.png" class="rounded-none w-12"/>
+    </div>
+    <div class="flex-1 min-w-0">
+      <h3 class="text-xl px-1 font-bold text-blue-900">
+        Survey
+      </h3>
+    </div>
+  </div>
+
+  <div class="p-5" *ngIf="currentPoll">
+    <h3 class="font-semibold text-xl">{{currentPoll.title}}</h3>
+  </div>
+
+  <div class="overflow-x-auto relative sm:rounded-lg p-5" *ngIf="currentPoll">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <tbody>
+      <tr class="{{ isPair(i) ? 'bg-white dark:bg-gray-900' : 'bg-gray-50 dark:border-gray-700'}} border-b" *ngFor="let reponse of currentPoll.customResponses; let i = index" >
+      <tr class="{{ isPair(i) ? 'bg-white dark:bg-gray-900' : 'bg-gray-50 dark:border-gray-700'}} border-b" *ngFor="let reponse of currentPoll.customResponses; let i = index" >
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {{reponse}}
+        </th>
+        <td class="py-4 px-6">
+          {{getNombreWitchChoice(i+1).length > 0 ? getValeurEntiere((getNombreWitchChoice(i+1).length * 100) / (currentPoll.choice1.length + currentPoll.choice2.length + currentPoll.choice3.length + currentPoll.choice4.length + currentPoll.choice5.length)) + '%' : '/'}}
+        </td>
+        <td class="py-4 px-6">
+          {{getNombreWitchChoice(i+1).length}} Votes
+        </td>
+      </tr>
+      <tr class="{{ isPair(currentPoll.customResponses.length) ? 'bg-white dark:bg-gray-900' : 'bg-gray-50 dark:border-gray-700'}} border-b">
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Total
+        </th>
+        <td class="py-4 px-6">
+        </td>
+        <td class="py-4 px-6">
+          {{currentPoll.choice1.length + currentPoll.choice2.length + currentPoll.choice3.length + currentPoll.choice4.length + currentPoll.choice5.length}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>

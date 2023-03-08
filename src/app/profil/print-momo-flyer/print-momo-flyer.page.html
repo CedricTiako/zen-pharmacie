@@ -1,0 +1,226 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="flex items-center px-3">
+    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+      <ion-back-button defaultHref="profil"></ion-back-button>
+    </div>
+    <div class="flex-shrink-0">
+      <img src="../../../assets/img/icone-1.png" class="rounded-none w-12"/>
+    </div>
+    <div class="flex-1 min-w-0">
+      <h3 class="text-xl px-1 font-bold text-blue-900">
+        MoMo 4 Business
+      </h3>
+    </div>
+  </div>
+
+  <div class="text-center items-center py-20" *ngIf="isAuthUser === 0">
+    <svg class="inline w-8 h-8 text-gray-200 animate-spin fill-yellow-400" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+    </svg>
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  <div *ngIf="isAuthUser === -1" class="text-center text-gray-500 font-light text-xl p-5">
+    You must be logged in to access this section
+    <a class="block text-blue-900 font-medium" routerLink="../">Login page</a>
+  </div>
+
+  <section class="px-3" *ngIf="isAuthUser === 1">
+    <div>
+      <div class="pt-3">
+        <p class="px-2 text-sm font-bold tracking-tight text-blue-900 uppercase">
+          Print MoMo Flyer with ID & QR Code
+        </p>
+      </div>
+      <ion-slides id="groupeFeelsPrint" pager="false" class="my-4" [options]="slideOptsGroup">
+        <ion-slide>
+          <div (click)="currentTab = 1" class="w-24 {{ currentTab === 1 ? 'bg-yellow-400 text-gray-800' : 'bg-transparent text-gray-800 border border-gray-800'}} text-center ion-text-capitalize text-sm py-3 px-2 rounded-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline" viewBox="0 0 2048 2048"><path fill="currentColor" d="m2011 1728l-318 317l-90-90l163-163h-614v-128h614l-163-163l90-90l318 317zm-669 192l128 128H128V0h1115l549 549v734l-128-128V640h-512V128H256v1792h1086zm-62-1408h293l-293-293v293z"/></svg>
+            <br><span>Print MoMo Flyer</span>
+          </div>
+        </ion-slide>
+        <ion-slide>
+          <div (click)="currentTab = 2" class="w-24 {{ currentTab === 2 ? 'bg-yellow-400 text-gray-800' : 'bg-transparent text-gray-800 border border-gray-800'}} text-center ion-text-capitalize text-sm py-3 px-2 rounded-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline" viewBox="0 0 24 24"><path fill="currentColor" d="m16.5 18.1l-1.45-1.45q-.15-.15-.35-.15q-.2 0-.35.15q-.15.15-.15.35q0 .2.15.35l2.125 2.125q.225.225.525.225q.3 0 .525-.225l2.125-2.125q.15-.15.15-.35q0-.2-.15-.35q-.15-.15-.35-.15q-.2 0-.35.15L17.5 18.1v-3.6q0-.2-.15-.35Q17.2 14 17 14q-.2 0-.35.15q-.15.15-.15.35ZM3 18.5q0 .55.45.837q.45.288.95.088L10 17.05V17q0-.6.1-1.163q.1-.562.3-1.137L5 17v-3.5l6-1.5l-6-1.5V7l8.85 3.75q.725-.35 1.5-.55q.775-.2 1.65-.2h.3L4.375 4.575q-.5-.2-.937.087Q3 4.95 3 5.5ZM17 22q-2.075 0-3.537-1.462Q12 19.075 12 17q0-2.075 1.463-3.538Q14.925 12 17 12t3.538 1.462Q22 14.925 22 17q0 2.075-1.462 3.538Q19.075 22 17 22ZM5 14.7V17V7v7.7Z"/></svg>
+            <br><span>Send flyer in PoS</span>
+          </div>
+        </ion-slide>
+        <ion-slide>
+          <div (click)="currentTab = 3" class="w-24 {{ currentTab === 3 ? 'bg-yellow-400 text-gray-800' : 'bg-transparent text-gray-800 border border-gray-800'}} text-center ion-text-capitalize text-sm py-3 px-2 rounded-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline" viewBox="0 0 256 256"><path fill="currentColor" d="M216 26H72a38 38 0 0 0-38 38v72a22.1 22.1 0 0 0 22 22h46.8a1.8 1.8 0 0 1 1.5.7a2 2 0 0 1 .5 1.6l-6.7 46.9a1.9 1.9 0 0 0-.1.8a30 30 0 0 0 60 0a1.9 1.9 0 0 0-.1-.8l-6.7-46.9a2 2 0 0 1 .5-1.6a1.8 1.8 0 0 1 1.5-.7H200a22.1 22.1 0 0 0 22-22V32a6 6 0 0 0-6-6ZM72 38h106v42a6 6 0 0 0 12 0V38h20v68H46V64a26.1 26.1 0 0 1 26-26Zm128 108h-46.8a14.4 14.4 0 0 0-10.6 4.8a14.2 14.2 0 0 0-3.2 11.2l6.6 46.4a18 18 0 0 1-36 0l6.6-46.4a14.2 14.2 0 0 0-3.2-11.2a14.4 14.4 0 0 0-10.6-4.8H56a10 10 0 0 1-10-10v-18h164v18a10 10 0 0 1-10 10Z"/></svg>
+            <br><span>Display bonus</span>
+          </div>
+        </ion-slide>
+        <ion-slide>
+          <div (click)="currentTab = 4" class="w-24 {{ currentTab === 4 ? 'bg-yellow-400 text-gray-800' : 'bg-transparent text-gray-800 border border-gray-800'}} text-center ion-text-capitalize text-sm py-3 px-2 rounded-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline" viewBox="0 0 26 26"><path fill="currentColor" d="M13 0C5.925 0 0 5.08 0 11.5c0 3.03 1.359 5.748 3.5 7.781a6.733 6.733 0 0 1-1.094 1.875A16.48 16.48 0 0 1 .375 23.22A1 1 0 0 0 1 25c2.215 0 3.808-.025 5.25-.406c1.29-.342 2.399-1.058 3.531-2.063c1.03.247 2.093.469 3.219.469c7.075 0 13-5.08 13-11.5S20.075 0 13 0zm0 2c6.125 0 11 4.32 11 9.5S19.125 21 13 21c-1.089 0-2.22-.188-3.25-.469a1 1 0 0 0-.938.25c-1.125 1.079-1.954 1.582-3.062 1.875c-.51.135-1.494.103-2.188.157c.14-.158.271-.242.407-.407c.786-.96 1.503-1.975 1.719-3.125a1 1 0 0 0-.344-.937C3.249 16.614 2 14.189 2 11.5C2 6.32 6.875 2 13 2zm-1.906 3.906a1 1 0 0 0-.469.25l-1.5 1.407l1.344 1.468l1.187-1.125h2.406L15 8.97v1.469l-2.563 1.718A1 1 0 0 0 12 13v2h2v-1.438l2.563-1.718A1 1 0 0 0 17 11V8.594a1 1 0 0 0-.25-.656l-1.5-1.688a1 1 0 0 0-.75-.344h-3.188a1 1 0 0 0-.218 0zM12 16v2h2v-2h-2z"/></svg>
+            <br><span>Question and tutorial</span>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <section *ngIf="currentTab === 1">
+
+      <div class="mb-3 font-normal text-sm text-gray-200">
+        <form #form="ngForm">
+          <div>
+            <label for="store" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select your store</label>
+            <select required ngModel name="store" id="store" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5">
+              <option disabled value="">Make a choice</option>
+              <option value="{{part.id}}" *ngFor="let part of partner; let i = index">{{part.name}}</option>
+            </select>
+          </div>
+          <div class="mt-3">
+            <label for="campagne" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select campaign</label>
+            <select required ngModel name="campagne" id="campagne" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5">
+              <option disabled value="">Make a choice</option>
+              <option value="{{camp.id}}" *ngFor="let camp of campagnes; let i = index">{{camp.name}}</option>
+            </select>
+          </div>
+          <div class="mt-3">
+            <label for="language" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select language</label>
+            <select required ngModel name="language" id="language" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5">
+              <option disabled value="">Make a choice</option>
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+            </select>
+          </div>
+          <div class="text-center mt-3">
+            <button (click)="openLink('print-custom-campaign?idStore=' + form.value.store + '&idCampagne=' + form.value.campagne + '&language=' + form.value.language)" [disabled]="form.invalid" class="disabled:opacity-75 inline-flex items-center bg-blue-900 text-yellow-400 py-2 px-3 text-sm font-medium text-center rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 -mr-1 w-4 h-4" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 9.325v5.35q0 .6.525.875t1.025-.05l4.15-2.65q.475-.275.475-.85t-.475-.85L11.05 8.5q-.5-.325-1.025-.05q-.525.275-.525.875ZM12 22q-2.075 0-3.9-.788q-1.825-.787-3.175-2.137q-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175q1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138q1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175q-1.35 1.35-3.175 2.137Q14.075 22 12 22Zm0-10Zm0 8q3.325 0 5.663-2.337Q20 15.325 20 12t-2.337-5.663Q15.325 4 12 4T6.338 6.337Q4 8.675 4 12t2.338 5.663Q8.675 20 12 20Z"/></svg>
+              &nbsp; &nbsp;
+              <span class="font-bold">Generate</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section *ngIf="currentTab === 2">
+      <div class="w-full border border-yellow-400 p-3 rounded mb-2">
+        <h2 class="text-base font-normal text-black capitalize dark:text-white mb-2">Photo library</h2>
+          <form [formGroup]="uploadForm">
+            <div>
+              <label for="store1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select your store</label>
+              <select required formControlName="store" id="store1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5">
+                <option disabled value="">Make a choice</option>
+                <option value="{{part.id}}" *ngFor="let part of partner; let i = index">{{part.name}}</option>
+              </select>
+            </div>
+            <div class="mt-3">
+              <label for="campagne1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select campaign</label>
+              <select required formControlName="campagne" id="campagne1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5">
+                <option disabled value="">Make a choice</option>
+                <option value="{{camp.id}}" *ngFor="let camp of campagnes; let i = index">{{camp.name}}</option>
+              </select>
+            </div>
+            <div class="mt-3">
+              <label for="language1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select language</label>
+              <select required formControlName="language" id="language1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5">
+                <option disabled value="">Make a choice</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+              </select>
+            </div>
+            <div *ngIf="!imgFile" class="my-3 relative h-56 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer">
+              <div class="absolute">
+                <div class="flex flex-col items-center ">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span class="block text-gray-400 font-light">Drag your photos here</span> <span class="block text-gray-400 font-normal">or</span> <button type="button" class="focus:outline-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-semibold rounded-lg text-base px-3 py-2 m-2 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800">Add photos</button> </div>
+              </div> <input type="file" formControlName="file" (change)="onImageChange($event)" accept="image/*" class="h-full w-full opacity-0" name="file">
+            </div>
+            <div class="py-3">
+              <img *ngIf="imgFile" class="w-full h-full overflow-hidden object-cover" src="{{imgFile}}" alt="" />
+            </div>
+            <div class="flex justify-between items-center text-gray-400 font-light"> <span>Accepted file type:.png, .jpg, .gif</span> <span class="flex items-center ">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg></span> </div>
+            <button [disabled]="uploadForm.invalid || isLoadingUploadImage" (click)="uploadImage()" type="button" class="disabled:opacity-50 focus:outline-none text-white bg-blue-900 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-light rounded-lg text-base px-3 py-2 mt-2 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+              <svg *ngIf="isLoadingUploadImage" role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+              </svg>
+              Send image
+            </button>
+          </form>
+        </div>
+    </section>
+    <section *ngIf="currentTab === 3" class="py-3">
+      <div class="space-y-3 ">
+        <div *ngFor="let postP of postProof" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <a href="#">
+            <img class="rounded-t-lg" src="{{postP.media}}" alt="" />
+          </a>
+          <div class="p-5">
+            <a href="#">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{postP.date | date : 'EEE dd MM YYYY - HH:mm'}}</h5>
+            </a>
+            <!--p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p-->
+            <a class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white {{postP.etat === 0 ? 'bg-blue-700' : (postP.etat === 1 ? 'bg-green-700' : (postP.etat === -1 ? 'bg-red-700' : (postP.etat === 2 ? 'bg-yellow-700' : ('...'))))}} rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              {{postP.etat === 0 ? 'in progress' : (postP.etat === 1 ? 'validate' : (postP.etat === -1 ? 'reject' : (postP.etat === 2 ? 'pay' : ('...'))))}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section *ngIf="currentTab === 4" class="p-3">
+    <p class="px-3 mb-2 text-sm font-bold tracking-tight text-gray-700 uppercase">
+      Need help?
+    </p>
+    <div class="border border-yellow-400 mx-2 p-2 rounded mb-2">
+      <div class="mb-3 font-normal text-sm text-gray-200">
+        <form #form="ngForm" (ngSubmit)="sendMessage(form)">
+          <div class="mt-3">
+            <label for="campagne" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your concern</label>
+            <div class="space-y-2">
+              <div class="flex items-center">
+                <input ngModel required id="default-radio-1" type="radio" value="Claiming a bonus not received?" name="preocupation" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="default-radio-1" class="ml-2 text-sm font-normal text-gray-900 dark:text-gray-300">Claiming a bonus not received?</label>
+              </div>
+              <div class="flex items-center">
+                <input ngModel required checked id="default-radio-2" type="radio" value="Need assistance in use" name="preocupation" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="default-radio-2" class="ml-2 text-sm font-normal text-gray-900 dark:text-gray-300">Need assistance in use</label>
+              </div>
+              <div class="flex items-center">
+                <input ngModel required checked id="default-radio-3" type="radio" value="It doesn't work" name="preocupation" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="default-radio-3" class="ml-2 text-sm font-normal text-gray-900 dark:text-gray-300">It doesn't work</label>
+              </div>
+              <div class="flex items-center">
+                <input ngModel required checked id="default-radio-4" type="radio" value="Other concerns" name="preocupation" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="default-radio-4" class="ml-2 text-sm font-normal text-gray-900 dark:text-gray-300">Other concerns</label>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5">
+            <label for="precision" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Details of your request</label>
+            <textarea ngModel required id="precision" name="precision" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write..."></textarea>
+          </div>
+          <div class="text-center mt-5">
+            <button *ngIf="!form.invalid" type="submit" class="{{isLoadSendMessage ? 'opacity-50' : ''}} inline-flex items-center bg-blue-900 text-yellow-400 py-2 px-3 text-sm font-medium text-center rounded-lg hover:text-white hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 -mr-1 w-4 h-4 hover:text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+              </svg>
+              &nbsp; &nbsp;
+              <span class="font-bold">Send</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <p class="px-3 my-3 text-sm font-bold tracking-tight text-gray-700 uppercase">
+      How does it work?
+    </p>
+    <div class="border border-yellow-400 mx-2 p-2 rounded mb-2">
+      <ng-container *ngFor="let id of ['1','2','12']">
+        <app-miniature-article [skin]="'card-t'" [idArticle]="id"></app-miniature-article> <br>
+      </ng-container>
+    </div>
+  </section>
+</ion-content>

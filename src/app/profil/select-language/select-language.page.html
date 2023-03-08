@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="flex items-center">
+    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </div>
+    <div class="flex-shrink-0">
+      <img src="assets/img/icone-1.png" class="rounded-none w-12"/>
+    </div>
+    <div class="flex-1 min-w-0">
+      <h3 class="text-xl px-1 font-bold text-blue-900">
+        Select language
+      </h3>
+    </div>
+  </div>
+
+  <ion-list>
+    <ion-radio-group value="{{currentLanguage}}">
+      <ion-item>
+        <ion-label class="font-light">Automatic</ion-label>
+        <ion-radio color="secondary" (click)="currentLanguageSelect = ''" slot="start" value=""></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="font-light">English</ion-label>
+        <ion-radio color="secondary" (click)="currentLanguageSelect = 'en'" slot="start" value="en"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="font-light">Français</ion-label>
+        <ion-radio color="secondary" (click)="currentLanguageSelect = 'fr'" slot="start" value="fr"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>
